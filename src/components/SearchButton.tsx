@@ -8,12 +8,12 @@ const WideButton = withStyles({
   }
 })(Button)
 
-const SearchButton = ({clickHandler}: Props) => {
+const SearchButton = ({clickHandler, active}: Props) => {
   return (
-    <WideButton onClick={() => clickHandler()} variant="contained" color="primary" size="large">Search</WideButton>
+    <WideButton onClick={() => clickHandler()} disabled={!active} variant="contained" color="primary" size="large">Search</WideButton>
   );
 };
 
-type Props = { clickHandler: Function };
+type Props = { clickHandler: Function, active: boolean };
 
 export default SearchButton;

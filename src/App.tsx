@@ -12,8 +12,11 @@ import { data } from './types/pixabayResponse';
 
 function App() {
   let [results, setResults] = useState([]);
+  let [saved, setSaved] = useState([]);
   let [category, setCategory] = useState('');
   let [search, setSearch] = useState('');
+  let [searchActive, setSearchActive] = useState(false);
+
   const handleSelectCategory = (newCategory: string) => {
     setCategory(newCategory);
   }
@@ -21,40 +24,61 @@ function App() {
     // NOTE: if we implement an auto-search feature, this will need to be
     // debounced. As-is this waits for the user's input to sumbit the change
     setSearch(newSearch);
+    if (search === '') {
+      setSearchActive(false);
+    } else {
+      setSearchActive(true);
+    }
   }
 
   const handleSubmit = () => {
-    getResultPromise(search, category).then((response) => {
-      if (response.status == 200) {
-        console.log(response.data.hits);
-        setResults(response.data.hits);
-      }
-      // NOTE: we don't do anything if we get an error response
-    })
+    if (searchActive) {
+      getResultPromise(search, category).then((response) => {
+        if (response.status == 200) {
+          console.log(response.data.hits);
+          setResults(response.data.hits);
+        }
+        // NOTE: we don't do anything if we get an error response
+      })
+    }
+  }
+
+  const toggleSave = (id: string) => {
+    console.log(saved)
+    if (saved && saved.includes(id)){
+      setSaved(saved.filter(idx => idx !== id));
+    } else {
+      setSaved(saved.concat(id));
+    }
+    console.log(saved)
   }
 
   return (
     <div className="App">
-      <Grid container spacing={1}>
-        <Grid item xs={6}>
-          <SearchBox value={search} onUpdate={handleSearchChange}/>
+      <div className="header">
+        <Grid container spacing={1}>
+          <Grid item xs={6}>
+            <SearchBox value={search} onUpdate={handleSearchChange}/>
+          </Grid>
+          <Grid item xs={6}>
+            <CategorySelect
+              onSelect={handleSelectCategory}
+              category={category}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <SearchButton clickHandler={handleSubmit} active={searchActive}/>
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <CategorySelect
-            onSelect={handleSelectCategory}
-            category={category}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <SearchButton clickHandler={handleSubmit}/>
-        </Grid>
-        {results.map((data: data) => {
-          return (
-            <Grid key={data.id} item xs={12}>
-              <ResultComponent data={data}/>
-            </Grid>
-          );
-        })}
+      </div>
+      <Grid direction="column" container spacing={3}>
+      {results.map((data: data) => {
+        return (
+          <Grid key={data.id} item xs={12}>
+            <ResultComponent data={data} saved={saved} handleSave={toggleSave}/>
+          </Grid>
+        );
+      })}
       </Grid>
     </div>
   );
