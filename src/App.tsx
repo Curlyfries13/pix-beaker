@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 
 import './App.css';
+
+import AppBar from './components/AppBar';
 import CategorySelect from './components/CategorySelect';
 import SearchBox from './components/SearchBox';
 import SearchButton from './components/SearchButton';
@@ -16,10 +18,12 @@ function App() {
   let [category, setCategory] = useState('');
   let [search, setSearch] = useState('');
   let [searchActive, setSearchActive] = useState(false);
+  let [favState, setFavState] = useState(false);
 
   const handleSelectCategory = (newCategory: string) => {
     setCategory(newCategory);
   }
+
   const handleSearchChange = (newSearch: string) => {
     // NOTE: if we implement an auto-search feature, this will need to be
     // debounced. As-is this waits for the user's input to sumbit the change
@@ -29,6 +33,9 @@ function App() {
     } else {
       setSearchActive(true);
     }
+  }
+  const handleFavToggle = () => {
+    setFavState(!favState);
   }
 
   const handleSubmit = () => {
@@ -52,6 +59,7 @@ function App() {
     }
     console.log(saved)
   }
+
 
   return (
     <div className="App">
@@ -80,6 +88,7 @@ function App() {
         );
       })}
       </Grid>
+      <AppBar favToggle={handleFavToggle}/>
     </div>
   );
 }
