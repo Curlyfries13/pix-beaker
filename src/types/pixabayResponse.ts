@@ -1,3 +1,5 @@
+// This type structure represents the shape of the data that comes back from the
+// Pixabay API.
 export type data = {
   comments: number,
   downloads: number,
@@ -12,7 +14,7 @@ export type data = {
   previewHeight: string,
   previewURL: string,
   previewWidth: number,
-  tags: string[],
+  tags: string,
   'type': string,
   user: string,
   userImageURL: string,

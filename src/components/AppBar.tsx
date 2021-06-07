@@ -6,6 +6,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import './AppBar.css';
 
+// Use styles for Material to avoid material-ui overriding properties
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     appBar: {
@@ -15,13 +16,15 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+// This component is the App bar, for containing universal actions, currently:
+//   Favorites (toggle the favorite drawer)
 const AppBar = ({ favToggle }: Props) => {
   const classes = useStyles();
   return (
     <>
       <MatAppBar position="fixed" color="primary" className={classes.appBar}>
         <Toolbar>
-          <IconButton color="inherit" onClick={favToggle}>
+          <IconButton color="inherit" onClick={() => favToggle()}>
             <FavoriteIcon />
           </IconButton>
         </Toolbar>

@@ -3,10 +3,15 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 
+// This component is the search text box.
+// TODO: implement hook for ENTER
 const SearchBox = ({value, onUpdate} : Props) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>{
     // if we need validation set it up in this handler.
-    onUpdate(event.target.value);
+    if (event.target.value.length <= 100){
+      onUpdate(event.target.value);
+    }
+    // TODO: implement error state
   }
   return (
     <FormControl>

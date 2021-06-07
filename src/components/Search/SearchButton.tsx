@@ -8,6 +8,9 @@ const WideButton = withStyles({
   }
 })(Button)
 
+// This is the Search Bar component. It's customized to span the whole width of
+// its container.
+// Requires a click handler function and an active flag
 const SearchButton = ({clickHandler, active}: Props) => {
   return (
     <WideButton onClick={() => clickHandler()} disabled={!active} variant="contained" color="primary" size="large">Search</WideButton>

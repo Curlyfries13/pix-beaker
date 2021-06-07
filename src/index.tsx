@@ -5,6 +5,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Set up the app, and set up the Router to allow for url hopping within the
+// app
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

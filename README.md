@@ -1,6 +1,30 @@
-# Getting Started with Create React App
+# Pix-Beaker
+This app is a simple frontend to the Pixabay API
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Setup
+Install the packages in the package.json. This Project uses node 14.17.0.
+
+`
+npm install
+`
+
+The API key is _not_ included with the source code: to use an API key, add a
+file at this location: `src/API/PixabayAPI.key.ts`, and add the following code:
+
+`TypeScript
+export const config = {
+  key: "1234567890-abcdefghijklmnop"
+}
+`
+replacing the key with a valid key.
+
+## About the App
+This app is build with Material-UI as the UI Framework and utilizes the Pixabay
+API as the backend. The App runs entirely in memory, so refreshing wipes out any
+saved data.
+
+The app is SPA, so moving between views in the app does not remove the top-level
+state for saved pictures, or results from the last Search.
 
 ## Available Scripts
 
@@ -39,8 +63,3 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

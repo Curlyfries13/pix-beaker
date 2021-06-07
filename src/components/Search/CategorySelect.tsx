@@ -4,8 +4,11 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { withStyles } from '@material-ui/core/styles'
+
 import { categories } from 'categories';
 
+// This component is the customized Selection component for selecitng categoires
+// from the Pixabay API.
 const CategorySelect = ({ category, onSelect }: Props) => {
   const [selected, setSelected] = useState(category === undefined ? '' : category)
   const handleChange = (event: any) => {
@@ -18,6 +21,7 @@ const CategorySelect = ({ category, onSelect }: Props) => {
       'min-width': '85px'
     }
   })(Select)
+
   return (
     <FormControl>
       <InputLabel id="category-select">Category</InputLabel>

@@ -12,5 +12,6 @@
   padding-right: 15px;
 }
 
-.preview-display {
+.preview-container {
+  align-self: end;
 }
