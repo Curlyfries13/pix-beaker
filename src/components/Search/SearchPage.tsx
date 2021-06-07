@@ -39,7 +39,6 @@ function SearchPage({ results, setResults, saved, setSaved}: Props) {
     if (searchActive) {
       getResultPromise(search, category).then((response) => {
         if (response.status === 200) {
-          console.log(response.data.hits);
           setResults(response.data.hits);
         }
         // NOTE: we don't do anything if we get an error response

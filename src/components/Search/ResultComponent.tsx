@@ -14,7 +14,6 @@ const ResultComponent = ({data, saved, handleSave}: Props) => {
   const handleClick = () => {
     handleSave(data.id);
   }
-  console.log(data.tags.split(','));
   return (
     <Grid container spacing={1} className="results-container">
       <Grid container item xs={6}>

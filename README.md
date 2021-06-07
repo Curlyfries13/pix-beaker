@@ -11,20 +11,25 @@ npm install
 The API key is _not_ included with the source code: to use an API key, add a
 file at this location: `src/API/PixabayAPI.key.ts`, and add the following code:
 
-`TypeScript
+```TypeScript
 export const config = {
   key: "1234567890-abcdefghijklmnop"
 }
-`
+```
 replacing the key with a valid key.
 
 ## About the App
-This app is build with Material-UI as the UI Framework and utilizes the Pixabay
+This app is built with Material-UI as the UI Framework and utilizes the Pixabay
 API as the backend. The App runs entirely in memory, so refreshing wipes out any
 saved data.
 
 The app is SPA, so moving between views in the app does not remove the top-level
-state for saved pictures, or results from the last Search.
+state for saved pictures, or results from the last search. Saved items are
+stored as links to the ID: a user can click on their saved links by opening up
+the sidebar using the favorites button on the bottom App Bar.
+
+Searches hit the Pixabay API, and restrictions on the API are enforced via
+client-side validation. Searches return the top 10 results.
 
 ## Available Scripts
 
