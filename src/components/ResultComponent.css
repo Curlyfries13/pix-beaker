@@ -1,0 +1,17 @@
+.save-button {
+  width: 100%;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.results-container{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.preview-display {
+  height: 100%;
+}
