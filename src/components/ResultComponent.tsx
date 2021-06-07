@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { Comment, StarBorder } from '@material-ui/icons';
+import { Link } from 'react-router-dom'
 
 import './ResultComponent.css';
 import { data as APIData } from 'types/pixabayResponse';
@@ -13,7 +14,9 @@ const ResultComponent = ({data, active, saved, handleSave}: Props) => {
   return (
     <Grid container className="results-container">
       <Grid item xs={6} className="preview-container" >
-        <img src={data.previewURL} className="preview-display"/>
+        <Link to={"/view/" + data.id}>
+          <img src={data.previewURL} className="preview-display"/>
+        </Link>
       </Grid>
       <Grid container item xs={2}/>
       <Grid container item xs={4}>
